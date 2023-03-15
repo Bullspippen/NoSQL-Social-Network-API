@@ -20,12 +20,12 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// Set up POST and DELETE at /api/thoughts/:thoughtId/reactions
-router.route("/:thoughtId/reactions").post(addReaction, (req, res, next) => {
-  res.send("Reaction added");
-});
+// // Set up POST and DELETE at /api/thoughts/:thoughtId/reactions
+// router.route("/:thoughtId/reactions").post(addReaction, (req, res, next) => {
+//   res.send("Reaction added");
+// });
 
-// Set up DELETE at /api/thoughts/:thoughtId/reactions/:reactionId
-router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
+// // Set up DELETE at /api/thoughts/:thoughtId/reactions/:reactionId
+// router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
 
 module.exports = router;
