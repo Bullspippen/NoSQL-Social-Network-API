@@ -2,9 +2,9 @@
   "name": "social-media-api",
   "version": "1.0.0",
   "description": "A social media API",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node api/index.js"
+    "start": "node server.js"
   },
   "keywords": [
     "social media",
