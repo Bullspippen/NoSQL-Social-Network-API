@@ -10,13 +10,13 @@ const thoughtSchema = new Schema(
             minlength: 1,
             maxlength: 280
     },
-    // createdAt must be a date, default value is the current timestamp
+        // createdAt must be a date, default value is the current timestamp
         createdAt: {
             type: Date,
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
     },
-    // username must be a string, required
+        // username must be a string, required
         username: {
             type: String,
             required: true

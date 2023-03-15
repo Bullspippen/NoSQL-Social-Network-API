@@ -43,5 +43,18 @@ const userSchema = new Schema(
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 })
-const User = model('User', userSchema);
-module.exports = User;
+
+// remove a user's associated thoughts when deleted
+userSchema.pre('remove', async function (next) {
+    try {
+      await this.model('Thought').deleteMany({ username: this.username });
+      next();
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+  });
+  
+  const User = model('User', userSchema);
+  
+  module.exports = User;
