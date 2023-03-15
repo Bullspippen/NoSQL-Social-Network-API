@@ -8,7 +8,8 @@ const {
   addReaction,
   deleteReaction,
 } = require("../../controllers/thoughtController.js");
-const { create } = require("../../models/Thought");
+
+const Thought = require("../../models/Thought");
 
 // Set up GET all and POST at /api/thoughts
 router.route("/").get(getAllThoughts).post(createThought);
@@ -20,12 +21,7 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// // Set up POST and DELETE at /api/thoughts/:thoughtId/reactions
-// router.route("/:thoughtId/reactions").post(addReaction, (req, res, next) => {
-//   res.send("Reaction added");
-// });
-
-// // Set up DELETE at /api/thoughts/:thoughtId/reactions/:reactionId
-// router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
+// Set up POST and DELETE at /api/thoughts/:thoughtId/reactions
+router.route("/:thoughtId/reactions").post(addReaction).delete(deleteReaction);
 
 module.exports = router;
