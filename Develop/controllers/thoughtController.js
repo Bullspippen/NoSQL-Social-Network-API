@@ -35,10 +35,10 @@ const thoughtController = {
   createThought(req, res) {
     // create a new thought using the Thought model and the data from the request body
     Thought.create(req.body)
-      .then(({ _id }) => {
+      .then ((createThought) => {
         return User.findOneAndUpdate(
           { _id: req.body.userId },
-          { $push: { thoughts: _id } },
+          { $push: { thoughts: createThought._id } },
           { new: true }
         );
       })
@@ -56,7 +56,7 @@ const thoughtController = {
 
   // PUT to update a thought by its _id
   updateThought(req, res) {
-    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, {$set: req.body}, { new: true, runValidators: true })
+    Thought.findOneAndUpdate({ _id: req.params.id }, {$set: req.body}, { new: true, runValidators: true })
       .then(dbThoughtData => {
         if (!dbThoughtData) {
           return res.status(404).json({ message: 'No thought found with this id!' });
@@ -71,14 +71,14 @@ const thoughtController = {
 
   // DELETE to remove a thought by its _id
   deleteThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+    Thought.findOneAndDelete({ _id: req.params.id })
       .then(dbThoughtData => {
         if (!dbThoughtData) {
           return res.status(404).json({ message: 'No thought found with this id!' });
         }
         return User.findOneAndUpdate(
-          { _id: dbThoughtData.userId },
-          { $pull: { thoughts: req.params.thoughtId } },
+          { thoughts: req.params.id },
+          { $pull: { thoughts: req.params.id } },
           { new: true }
         );
       })
