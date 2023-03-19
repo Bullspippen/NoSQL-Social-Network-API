@@ -1,4 +1,4 @@
-const { Thought } = require('../models');
+const { Thought } = require("../models");
 
 const reactionController = {
   // add reaction to thought
@@ -7,13 +7,13 @@ const reactionController = {
     const { reactionBody, username } = req.body;
 
     Thought.findByIdAndUpdate(
-      thoughtId,
+      { _id: thoughtId },
       { $push: { reactions: { reactionBody, username } } },
       { new: true, runValidators: true }
     )
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thought found with this id!' });
+          res.status(404).json({ message: "No thought found with this id!" });
           return;
         }
         res.json(dbThoughtData);
@@ -27,15 +27,15 @@ const reactionController = {
   // delete reaction from thought
   deleteReaction(req, res) {
     const { thoughtId, reactionId } = req.params;
-
-    Thought.findByIdAndUpdate(
-      thoughtId,
-      { $pull: { reactions: { reactionId } } },
+    console.log(thoughtId, reactionId);
+    Thought.findOneAndUpdate(
+      { _id: thoughtId },
+      { $pull: { reactions: { reactionId: reactionId } } },
       { new: true }
     )
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thought found with this id!' });
+          res.status(404).json({ message: "No thought found with this id!" });
           return;
         }
         res.json(dbThoughtData);
@@ -47,4 +47,4 @@ const reactionController = {
   },
 };
 
-module.exports = reactionController;ç
+module.exports = reactionController;
