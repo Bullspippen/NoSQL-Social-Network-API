@@ -56,7 +56,7 @@ The User controller handles requests related to the User model. It has four meth
 The `deleteUser` function removes a user by its _id and also removes the associated thoughts for that user.
 
 ### Thought Controller
-The Thought controller handles requests related to the Thought model. It has four methods:
+The Thought controller handles requests related to the Thought model. It has five methods:
 
 - `getAllThoughts`: GET request that retrieves all thoughts
 - `getThoughtById`: GET request that retrieves a single thought by its _id
