@@ -30,7 +30,7 @@ const reactionController = {
     console.log(thoughtId, reactionId);
     Thought.findOneAndUpdate(
       { _id: thoughtId },
-      { $pull: { reactions: { reactionId: reactionId } } },
+      { $pull: { reactions: { _id: reactionId } } },
       { runValidators: true, new: true }
     )
       .then((dbThoughtData) => {
