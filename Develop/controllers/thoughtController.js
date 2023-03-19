@@ -59,6 +59,7 @@ const thoughtController = {
 
   // Update thought by its _id
   updateThought(req, res) {
+    // update a thought using the Thought model and the data from the request body
     Thought.findOneAndUpdate(
         { _id: req.params.thoughtId }, 
         { $set: req.body },
@@ -73,6 +74,7 @@ const thoughtController = {
 
   // Delete thought by its _id
   deleteThought(req, res) {
+    // delete a thought using the Thought model and the data from the request body
     Thought.deleteOne({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
