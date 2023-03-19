@@ -101,3 +101,5 @@ The `/api/thoughts/:thoughtId/reactions` route handles requests related to the R
 
 - POST: Creates a new reaction and adds it to the associated thought's reactions field
 - DELETE: Removes a reaction by its _id from the associated thought's reactions field
+
+Check out this Link to View the Functionality of the Application Using Insomnia: [SOCIAl NETWORK API](https://drive.google.com/file/d/1BL5MCdpSIn55YiqWFjIDxvseiLmNR0Bt/view)
