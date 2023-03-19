@@ -19,10 +19,15 @@ router.route("/").get(getAllThoughts).post(createThought);
 
 // Set up GET one, PUT, and DELETE at /api/thoughts/:id
 router
-  .route("/:thoughtId")
-  .get(getThoughtById)
-  .put(updateThought)
-  .delete(deleteThought);
+  .route("/:thoughtId").get(getThoughtById);
+
+  // Set up GET one, PUT, and DELETE at /api/thoughts/:id
+router
+.route("/:thoughtId").put(updateThought);
+
+// Set up GET one, PUT, and DELETE at /api/thoughts/:id
+router
+  .route("/:thoughtId/").delete(deleteThought);
 
 // Set up POST and DELETE at /api/thoughts/:thoughtId/reactions
 router.route("/:thoughtId/reactions").post(addReaction);
