@@ -32,7 +32,7 @@ const thoughtController = {
       });
   },
 
-  // POST a new thought
+  // POST to create a new thought 
   createThought(req, res) {
     // create a new thought using the Thought model and the data from the request body
     Thought.create(req.body)
@@ -57,28 +57,21 @@ const thoughtController = {
       });
   },
 
-  // PUT to update a thought by its _id
+  // Update thought by its _id
   updateThought(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: req.body },
-      { new: true, runValidators: true }
-    )
-      .then((dbThoughtData) => {
-        if (!dbThoughtData) {
-          return res
-            .status(404)
-            .json({ message: "No thought found with this id!" });
-        }
-        res.json(dbThoughtData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  },
+        { _id: req.params.thoughtId }, 
+        { $set: req.body },
+        { runValidators: true, new: true })
+        .then((thought) =>
+            !thought
+                ? res.status(404).json({ message: 'No thought found with that id' })
+                : res.json(thought)
+        )
+        .catch((err) => res.status(500).json(err));
+},
 
-  // Delete thought
+  // Delete thought by its _id
   deleteThought(req, res) {
     Thought.deleteOne({ _id: req.params.thoughtId })
       .then((thought) =>
