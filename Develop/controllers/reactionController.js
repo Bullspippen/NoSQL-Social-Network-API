@@ -31,7 +31,7 @@ const reactionController = {
     Thought.findOneAndUpdate(
       { _id: thoughtId },
       { $pull: { reactions: { reactionId: reactionId } } },
-      { new: true }
+      { runValidators: true, new: true }
     )
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
